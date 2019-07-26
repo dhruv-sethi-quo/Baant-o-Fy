@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserManagementService } from 'src/app/user-management.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot',
@@ -11,7 +14,7 @@ export class ForgotComponent implements OnInit {
 
   forgotForm: FormGroup;
 
-  constructor(private data: UserManagementService) { }
+  constructor(private data: UserManagementService, private router: Router) { }
 
   ngOnInit() {
     this.forgotForm = new FormGroup({
@@ -20,7 +23,12 @@ export class ForgotComponent implements OnInit {
   }
 
   onSubmit(){
-    this.data.forgotPassword(this.forgotForm.value.email);
+    this.data.forgotPassword(
+      this.forgotForm.value.email).pipe(catchError(err => of(`Some error occured ${err}`)))
+      .subscribe(success => {
+        alert("An email as been sent with further instructions.");
+        this.router.navigate(['/auth']);
+      });      
   }
 
 }

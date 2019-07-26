@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn('licked')
     this.data.loginUser(
       this.loginForm.value.loginEmail, this.loginForm.value.loginPassword
     ).pipe(catchError(err => of(`Some error occured ${err}`)))
