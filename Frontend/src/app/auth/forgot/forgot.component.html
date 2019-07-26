@@ -1,0 +1,26 @@
+<div class="container" style="padding-top:10px ; max-width: 50%">
+        <mdb-card>
+            <mdb-card-body>
+                <!-- Default form login -->
+    <form class="text-center" [formGroup]="forgotForm" (ngSubmit)="onSubmit()" >
+    
+            <p class="h4 mb-4">Reset Password</p>
+          
+            <!-- Email -->
+            <input type="email" id="forgotFormEmail" class="form-control mb-4" placeholder="E-mail"
+            formControlName="email">
+          
+            <!-- Submit button -->
+            <div style="display: flex;justify-content: center;">
+                <button mdbBtn color="info" block="true" class="my-4" type="submit" style="width: 25%">Submit</button>
+            </div>
+          
+            <p>At the wrong place but the right time?
+            </p>
+            <p><a routerLink="/auth/login">Log in</a> or <a routerLink="/auth/signup"> Register</a>.</p>
+          
+          </form>
+          <!-- Default form login -->
+            </mdb-card-body>
+        </mdb-card>
+    </div>

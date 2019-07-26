@@ -1,0 +1,46 @@
+<div class="container" style="padding-top:10px ; max-width: 50%">
+        <mdb-card>
+            <mdb-card-body>
+                <!-- Default form login -->
+    <form class="text-center" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    
+            <p class="h4 mb-4">Register</p>
+
+            <div class="form-row mb-4">
+                <div class="col">
+                    <!-- First name -->
+                    <input type="text" id="RegisterFormFirstName" class="form-control" placeholder="First name"
+                    formControlName="first_name">
+                </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <input type="text" id="RegisterFormLastName" class="form-control" placeholder="Last name"
+                    formControlName="last_name">
+                </div>
+            </div>
+          
+            <!-- Email -->
+            <input type="email" id="RegisterFormEmail" class="form-control mb-4" placeholder="E-mail"
+            formControlName="email">
+          
+            <!-- Password -->
+            <input type="password" id="RegisterFormPassword" class="form-control mb-4" placeholder="Password"
+            formControlName="password">
+            
+
+          
+            <!-- Sign up button -->
+            <div style="display: flex;justify-content: center;">
+                <button mdbBtn color="info" block="true" class="my-4" type="submit" style="width: 25%">Register</button>
+            </div>
+          
+            <!-- Register -->
+            <p>Already a member?
+              <a routerLink="/auth/login">Log in here</a>
+            </p>
+          
+          </form>
+          <!-- Default form login -->
+            </mdb-card-body>
+        </mdb-card>
+    </div>
