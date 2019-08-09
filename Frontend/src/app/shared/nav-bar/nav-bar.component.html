@@ -1,10 +1,36 @@
 <div class="container">   
-    <mdb-navbar SideClass="navbar">
+    <mdb-navbar SideClass="navbar navbar-expand-lg">
         <mdb-navbar-brand>
             <div class="navbar-brand">
                 <img src="assets/images/logo.png" height="30" class="d-inline-block align-top" alt="">
                     Baant-o-Fy
             </div>
         </mdb-navbar-brand>
+        
+        <div *ngIf="checker">
+                <links>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                                <a class="nav-link waves-light" routerLink="/home/creategroup">
+                                    Create Group
+                                </a>
+                        </li>
+        
+                        <li class="nav-item">
+                                <a class="nav-link waves-light" routerLink="/home/profile">
+                                    Profile
+                                </a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a class="nav-link waves-light" mdbWavesEffect>
+                                <img src="assets/images/logout.png" height="25" class="d-inline-block align-top" (click)="logout()">
+                                <span class="sr-only"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </links>
+        </div>
+            
     </mdb-navbar>
 </div>

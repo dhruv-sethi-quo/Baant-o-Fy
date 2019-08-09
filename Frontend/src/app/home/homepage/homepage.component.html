@@ -1,5 +1,40 @@
 <app-nav-bar></app-nav-bar>
 
-<router-outlet></router-outlet>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <mdb-card>
+                <mdb-card-body>
+                    Add Bill
+                </mdb-card-body>
+            </mdb-card>
+
+            <mdb-card>
+                <mdb-card-body>
+                    Add Bill
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+        
+        <div class="col-10">
+            <mdb-card>
+                <mdb-card-body id="main-group-section">
+                    <div class="row">
+                        <div class="col-6" id="user-amount">
+                            amt to be given/received
+                        </div>
+                        <div class="col-6" id="total-bill-amount">
+                            total bill
+                        </div>
+                    </div>
+                    <div class="row" id="main-bill-section">
+                        main content 
+                    </div>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+</div>
+
 
 <app-footer></app-footer>

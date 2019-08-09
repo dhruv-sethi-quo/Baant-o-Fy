@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserManagementService } from 'src/app/user-management.service';
+import { UserManagementService } from 'src/app/auth/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';

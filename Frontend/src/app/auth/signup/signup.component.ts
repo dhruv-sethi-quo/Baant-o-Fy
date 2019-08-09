@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { UserManagementService } from 'src/app/user-management.service';
+import { UserManagementService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/core/model/user.model';
 import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,11 +33,13 @@ export class SignupComponent implements OnInit {
     this.user.password = this.signupForm.value.password;
     this.data.signup(this.user).pipe(
       catchError((err) => {
-        alert(JSON.stringify(err.error));
-        return of(`Some error occured ${err}`);
+        console.log("error");
+        return throwError(err.msg);
       })
     )
       .subscribe((success) => {
+        console.log("success")
+        alert(success.msg);
         this.router.navigate(['/auth/login']);
       });
   }
