@@ -3,32 +3,42 @@
 <div class="container">
     <div class="row">
         <div class="col-2">
-            <mdb-card>
-                <mdb-card-body>
-                    Add Bill
-                </mdb-card-body>
-            </mdb-card>
-
-            <mdb-card>
-                <mdb-card-body>
-                    Add Bill
-                </mdb-card-body>
-            </mdb-card>
+            <app-billmodal [currentGroup]="currentGroup"></app-billmodal>
+            <app-usergroups [userGroups]="userGroups"></app-usergroups>
         </div>
-        
+
         <div class="col-10">
             <mdb-card>
                 <mdb-card-body id="main-group-section">
-                    <div class="row">
-                        <div class="col-6" id="user-amount">
-                            amt to be given/received
-                        </div>
-                        <div class="col-6" id="total-bill-amount">
-                            total bill
-                        </div>
-                    </div>
+
                     <div class="row" id="main-bill-section">
-                        main content 
+                        <div *ngIf="this.currentGroup; else no_group">
+
+                                <div class="row">
+                                        <div class="col-6" id="user-amount">
+                                            amt to be given/received
+                                        </div>
+                                        <div class="col-6" id="total-bill-amount">
+                                            <h5>Total Bill:</h5>
+                                            <h4>  ₹<span class="green-text">{{this.currentAmount}}</span></h4>
+                                        </div>
+                                </div>
+                            
+                            <app-participants [participants]="this.currentGroup.participantObjects">
+                            </app-participants>
+
+                            <div *ngIf="this.currentGroup.bills.length>0; else no_bills">
+                                <app-bills [bills]="this.currentGroup.billObjects"></app-bills>
+                            </div>
+                            <ng-template #no_bills>
+                                <p>No bill exists.</p>
+                            </ng-template>
+                        </div>
+                        <ng-template #no_group>
+                            <p>No group exists. Create one
+                                <a routerLink="/home/creategroup">here</a>
+                            </p>
+                        </ng-template>
                     </div>
                 </mdb-card-body>
             </mdb-card>

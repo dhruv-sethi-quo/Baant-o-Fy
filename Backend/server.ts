@@ -23,7 +23,7 @@ app.use(passport.initialize());
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://127.0.0.1:27017/baant-o-fy', { useNewUrlParser: true }).then((db)=>{
+mongoose.connect('mongodb://127.0.0.1:27017/baant-o-fy', { useNewUrlParser: true }).then(()=>{
     app.use('/auth',authRoutes);
     app.use('/api', passport.authenticate('jwt',{session: false}), apiRoutes);
     app.listen(port);

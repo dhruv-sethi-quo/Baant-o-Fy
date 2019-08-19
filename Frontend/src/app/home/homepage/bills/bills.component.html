@@ -1,0 +1,49 @@
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Are you sure?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+          <div *ngIf="currentBill">
+            This action will delete {{currentBill.name}}.
+          </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-effect"
+          mdbWavesEffect (click)="onDelete(currentBill._id)">Yes</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+<div class="tabs">
+    <div *ngFor="let bill of bills">
+        <div class="tab">
+            <input type="checkbox" id="{{bill._id}}">
+            <label class="tab-label" for="{{bill._id}}">
+                {{bill.name}} - {{bill.participants.length}} Participants - ₹ {{bill.amount}}
+            </label>
+            <div class="tab-content">
+                <div class="participant-content">
+                    <app-participants [participants]="bill.participants"></app-participants>
+                </div>
+                <h5>{{bill.paidBy.name}} paid ₹ <span class="bill-amount">{{bill.amount}}</span>.</h5>
+                <p *ngFor="let participant of getParticipants(bill.participants, bill.paidBy.name)">
+                    {{participant.name}} owes {{bill.paidBy.name}} ₹ <span class="bill-amount">{{bill.amount/bill.participants.length}}</span>.
+                </p>
+                <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="deleteBill(bill)">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

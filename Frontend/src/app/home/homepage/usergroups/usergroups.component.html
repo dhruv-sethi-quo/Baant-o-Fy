@@ -1,0 +1,7 @@
+<div *ngFor="let group of userGroups" id="groupCard">
+    <mdb-card type="button" (click)="getGroup(group._id)">
+        <mdb-card-body>
+            {{group.name}}
+        </mdb-card-body>
+    </mdb-card>
+</div> 

@@ -8,10 +8,10 @@ import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-usergroup',
-  templateUrl: './usergroup.component.html',
-  styleUrls: ['./usergroup.component.scss']
+  templateUrl: './creategroup.component.html',
+  styleUrls: ['./creategroup.component.scss']
 })
-export class UsergroupComponent implements OnInit {
+export class CreategroupComponent implements OnInit {
 
   createGroupform: FormGroup;
 

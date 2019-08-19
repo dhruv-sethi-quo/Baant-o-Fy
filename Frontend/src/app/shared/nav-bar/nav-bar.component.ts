@@ -14,11 +14,14 @@ export class NavBarComponent implements OnInit {
   checker:boolean;
 
   ngOnInit() {
-    this.checker = this.loginCheckService.loggedIn;
+    if(localStorage.getItem("access-token")){
+      this.checker=true;
+    }
     console.log(this.loginCheckService.loggedIn);
   }
 
   logout(){
+    this.loginCheckService.loggedIn = false;
     localStorage.removeItem('access-token');
     this.router.navigate(['/']);
   }

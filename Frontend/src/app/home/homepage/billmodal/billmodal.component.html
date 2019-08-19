@@ -1,0 +1,53 @@
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="text-center" [formGroup]="createBillForm" (ngSubmit)="onSubmit()">
+        <!--Header-->
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Add Bill</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <!--Body-->
+        <div class="modal-body">
+          <div *ngIf="currentGroup">
+              <p>Bill for {{currentGroup.name}}</p>
+          </div>
+
+          <input type="text" class="form-control mb-4" placeholder="Bill name" formControlName="billName">
+
+          <!-- <mdb-select [options]="optionsSelect" [multiple]="true" [highlightFirst]="false" placeholder="Select people sharing the bill"></mdb-select> -->
+
+          <input type="text" class="form-control mb-4" placeholder="Participants" formControlName="participants">
+
+          <input type="text" class="form-control mb-4" placeholder="Who paid the amount?" formControlName="paidBy">
+
+          <div class="md-form input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text md-addon">₹</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest rupee)" formControlName="amount">
+            <div class="input-group-append">
+              <span class="input-group-text md-addon">.00</span>
+            </div>
+          </div>
+
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+            data-dismiss="modal" (click)="frame.hide()">Close</button>
+          <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Save Bill</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<mdb-card>
+  <mdb-card-body type="button" data-toggle="modal" data-target="#basicExample" (click)="showAndHideModal()">
+    Add bill
+  </mdb-card-body>
+</mdb-card>

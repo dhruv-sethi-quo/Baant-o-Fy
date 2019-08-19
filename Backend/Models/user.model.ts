@@ -5,11 +5,7 @@ let User = new mongoose.Schema({
     email: {type: String, required: true},
     password: {type: String, required: true},
     createdAt: {type: Date, required: false, default: Date.now},
-    updatedAt: {type: Date, required: false, default: Date.now},
-    belongsTo: [{ 
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'group',
-        required: false }]
+    updatedAt: {type: Date, required: false, default: Date.now}
 },{
     versionKey: false
 });
