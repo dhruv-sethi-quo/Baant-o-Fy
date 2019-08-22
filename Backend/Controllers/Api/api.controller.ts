@@ -1,6 +1,8 @@
 import { GroupService } from "../../Services/Api/group.service";
 import jsonwebtoken from "jsonwebtoken";
 import { BillService } from "../../Services/Api/bill.service";
+import { UserService } from "../../Services/Api/user.service";
+import { DebtService } from "../../Services/Api/debt.service";
 
 export class ApiController{
 
@@ -25,5 +27,20 @@ export class ApiController{
 
     static deleteBillController(request: any, response: any){
         return BillService.deleteBill(request, response);
+    }
+
+    static getUserDetailsController(request: any, response: any){
+        let value: any= this.fetchUserId(request);
+        return UserService.getUserDetails(value.email,response);
+    }
+
+    static changeUserPasswordController(request: any, response: any){
+        let value: any= this.fetchUserId(request);
+        return UserService.changeUserPassword(request, response, value.email);
+    }
+
+    static getDebtsController(request: any, response: any){
+        let value: any= this.fetchUserId(request);
+        return DebtService.getDebts(request,response,value.email);
     }
 }

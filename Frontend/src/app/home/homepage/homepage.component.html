@@ -8,27 +8,28 @@
         </div>
 
         <div class="col-10">
-            <mdb-card>
+            <mdb-card id="group-card">
                 <mdb-card-body id="main-group-section">
 
                     <div class="row" id="main-bill-section">
                         <div *ngIf="this.currentGroup; else no_group">
 
-                                <div class="row">
-                                        <div class="col-6" id="user-amount">
-                                            amt to be given/received
-                                        </div>
-                                        <div class="col-6" id="total-bill-amount">
-                                            <h5>Total Bill:</h5>
-                                            <h4>  ₹<span class="green-text">{{this.currentAmount}}</span></h4>
-                                        </div>
+                            <div class="row">
+                                <div class="col-3" id="total-bill-amount">
+                                    <h5>Total Bill: <h4>₹ <span class="green-text">{{this.currentAmount}}</span></h4>
+                                    </h5>
                                 </div>
-                            
-                            <app-participants [participants]="this.currentGroup.participantObjects">
-                            </app-participants>
+                            </div>
 
-                            <div *ngIf="this.currentGroup.bills.length>0; else no_bills">
-                                <app-bills [bills]="this.currentGroup.billObjects"></app-bills>
+                            <div class="row" style="justify-content: center">
+                                <app-participants [participants]="this.currentGroup.participantObjects">
+                                </app-participants>
+                            </div>
+
+                            <div class="row">
+                                <div *ngIf="this.currentGroup.bills.length>0; else no_bills">
+                                    <app-bills [bills]="this.currentGroup.billObjects"></app-bills>
+                                </div>
                             </div>
                             <ng-template #no_bills>
                                 <p>No bill exists.</p>

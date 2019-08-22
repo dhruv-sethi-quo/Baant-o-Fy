@@ -9,21 +9,34 @@ import { GroupBills } from '../model/groupbills.model';
 })
 export class UserService {
 
+  apiURL='http://localhost:8090/api/';
+
   constructor(private http: HttpClient) {}
 
   getAllGroups(){
-    return this.http.get<ApiResponse<any>>('http://localhost:8090/api/getusergroups');
+    return this.http.get<ApiResponse<any>>(this.apiURL+'getusergroups');
   }
 
+  getDebts(){
+    return this.http.get<ApiResponse<any>>(this.apiURL+'getdebts');
+  }
+
+  getUser(){
+    return this.http.get<ApiResponse<any>>(this.apiURL+'getuser');
+  }
+
+  changePassword(info: any){
+    return this.http.post<ApiResponse<any>>(this.apiURL+'changepassword',info);
+  }
 
   createBill(bill: GroupBills){
     console.log("bill is",bill);
-    return this.http.post<ApiResponse<any>>('http://localhost:8090/api/createbill', bill);
+    return this.http.post<ApiResponse<any>>(this.apiURL+'createbill', bill);
   }
 
   deleteBill(billId: String){
     console.log("deleteBill called with: ",billId);
-    return this.http.post<ApiResponse<any>>('http://localhost:8090/api/deletebill',{id: billId});
+    return this.http.post<ApiResponse<any>>(this.apiURL+'deletebill',{id: billId});
   }
 
   createGroup(name, participants){
@@ -31,6 +44,6 @@ export class UserService {
       name: name,
       participants: participants
     };
-    return this.http.post<ApiResponse<any>>('http://localhost:8090/api/creategroup',obj);
+    return this.http.post<ApiResponse<any>>(this.apiURL+'creategroup',obj);
   }
 }

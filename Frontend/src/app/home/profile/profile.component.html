@@ -1,1 +1,56 @@
-<p>profile works!</p>
+<app-nav-bar></app-nav-bar>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <form class="text-center" [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()">
+                <!--Header-->
+                <div class="modal-header">
+                    <p class="heading lead">Change password</p>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <input type="text" class="form-control mb-4" placeholder="Enter current password"
+                        formControlName="currentPassword">
+                    <input type="text" class="form-control mb-4" placeholder="Enter new password"
+                        formControlName="newPassword">
+                    <input type="text" class="form-control mb-4" placeholder="Confirm new password"
+                        formControlName="confirmPassword">
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" mdbBtn color="warning" class="waves-effect" (click)="onSubmit()" mdbWavesEffect>Change Password</a>
+                    <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+                        (click)="frame.hide()">No</a>
+                </div>
+            </form>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+
+<div class="container">
+    <mdb-card id="profile-card">
+        <mdb-card-body>
+            <p class="h4 mb-4">Profile</p>
+            <div *ngIf="currentUser">
+                <h5>Name: {{currentUser.name}}</h5>
+                <h5>Email: {{currentUser.email}}</h5>
+                <h5>Member since: {{currentUser.createdAt}}</h5>
+                <h5>Password: <a data-toggle="modal" data-target="#basicExample" (click)="showModal()">Change
+                        password</a></h5>
+            </div>
+        </mdb-card-body>
+    </mdb-card>
+</div>
+
+<app-footer></app-footer>

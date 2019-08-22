@@ -21,7 +21,7 @@ export class BillmodalComponent implements OnInit {
 
   createBillForm: FormGroup;
 
-  constructor(private service: UserService, private router: Router) { }
+  constructor(private service: UserService) { }
 
   ngOnInit() {
     this.createBillForm = new FormGroup({
@@ -54,8 +54,9 @@ export class BillmodalComponent implements OnInit {
       })
     )
     .subscribe((success) => {
-      this.router.navigate(['/home']);
+      alert(success.msg);
     });
+    
   }
 
 }

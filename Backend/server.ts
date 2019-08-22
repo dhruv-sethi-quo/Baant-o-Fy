@@ -8,6 +8,7 @@ require("./Models/bill.model");
 require("./Models/group.model");
 require("./Models/response.model");
 require("./Models/user.model");
+require("./Models/debts.model");
 const passport = require('passport');
 const jwtStrategy = require('./Middleware/authentication.middleware');
 

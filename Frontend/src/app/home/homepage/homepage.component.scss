@@ -7,13 +7,17 @@
     min-height: 50%;
 }
 
+#group-card{
+    width: 80%;
+}
+
 #user-amount{
     display: flex;
     justify-content: center;
 }
 
 #total-bill-amount{
-    display: flex;
+    display: inline;
     justify-content: center;
 }
 

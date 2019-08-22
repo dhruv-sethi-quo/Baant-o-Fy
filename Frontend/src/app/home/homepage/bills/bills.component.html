@@ -40,7 +40,7 @@
                 </div>
                 <h5>{{bill.paidBy.name}} paid ₹ <span class="bill-amount">{{bill.amount}}</span>.</h5>
                 <p *ngFor="let participant of getParticipants(bill.participants, bill.paidBy.name)">
-                    {{participant.name}} owes {{bill.paidBy.name}} ₹ <span class="bill-amount">{{bill.amount/bill.participants.length}}</span>.
+                    {{participant.name}} owes {{bill.paidBy.name}} ₹ <span class="bill-amount">{{getAmount(bill.amount/bill.participants.length)}}</span>.
                 </p>
                 <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="deleteBill(bill)">Delete</a>
             </div>

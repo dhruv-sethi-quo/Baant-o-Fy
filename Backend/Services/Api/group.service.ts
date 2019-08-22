@@ -22,7 +22,6 @@ export class GroupService{
             groupModel.aggregate([
                 { '$match': { 'bills': { '$in': [ObjectId(billId)] } } }
             ]).then((result: any)=>{
-                console.log("result is",result[0]);
                 resolve(result[0]._id);
             })
         })
@@ -72,14 +71,14 @@ export class GroupService{
                     "from": "bills",
                     "localField": "bills",
                     "foreignField": "_id",
-                    "as": "billObjects",
+                    "as": "billObjects"
                 }
             },{
                 "$lookup": {
                     "from": "users",
                     "localField": "participants",
                     "foreignField": "_id",
-                    "as": "participantObjects",
+                    "as": "participantObjects"
                 }
             }, { "$sort" : { "createdAt" : -1 }},
             {

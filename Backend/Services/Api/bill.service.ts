@@ -1,6 +1,7 @@
 import { ApiResponse } from "../../Models/response.model";
 import { UserService } from "./user.service";
 import { GroupService } from "./group.service";
+import { DebtService } from "./debt.service";
 
 export class BillService{
     
@@ -32,10 +33,15 @@ export class BillService{
                 $push: {
                     bills: newBill._id
                 }
-            }).then((result:any)=>{
-                const obj: ApiResponse<any> = {msg: "Bill added successfully!", data: null};
-                response.status(200).send(obj);
-    
+            }).then(()=>{
+                if(DebtService.createDebt(newBill, request.body.groupId)){
+                    const obj: ApiResponse<any> = {msg: "Group created and debts updated successfully!", data: null};
+                    response.status(200).send(obj);
+                }
+                else{
+                    const obj: ApiResponse<any> = {msg: "Error updating debts!", data: null};
+                    response.status(400).send(obj);
+                }
             }).catch((error:any)=>{
                 const obj: ApiResponse<any> = {msg: "Error updating group", data: error};
                 response.status(400).send(obj);
@@ -47,15 +53,10 @@ export class BillService{
     }
 
     static async deleteBill(request: any, response: any){
-        console.log("deleteBill service");
-        console.log(request.body);
         const billModel = require("../../Models/bill.model");
         const groupModel = require("../../Models/group.model");
         const billId = request.body.id;
         const groupId = await GroupService.getBillGroup(billId);
-
-        console.log("deleting bill: ",billId);
-        console.log("group id: ", groupId);
 
         billModel.remove({_id: billId}).then(()=>{
             groupModel.update({_id: groupId},{

@@ -24,6 +24,10 @@ export class BillsComponent implements OnInit {
   ngOnInit() {
   }
 
+  getAmount(amount: number){
+    return Math.round(amount*100)/100;
+  }
+
   deleteBill(bill: any){
     this.currentBill = bill;
     this.billModal.show();

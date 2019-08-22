@@ -19,7 +19,10 @@ export class HomepageComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getGroups();
+  }
 
+  getGroups(){
     this.userService.getAllGroups().pipe(
       catchError((err) => {
         if(err instanceof HttpErrorResponse){

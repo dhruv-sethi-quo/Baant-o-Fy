@@ -16,9 +16,19 @@ router.post('/createbill',(request, response)=>{
 });
 
 router.post('/deletebill',(request, response)=>{
-    console.log("/deletebill called");
-    console.log(request.body.id);
     return ApiController.deleteBillController(request, response);
+});
+
+router.get('/getuser',(request,response)=>{
+    return ApiController.getUserDetailsController(request, response);
+});
+
+router.post('/changepassword',(request,response)=>{
+    return ApiController.changeUserPasswordController(request,response);
+});
+
+router.get('/getdebts',(request,response)=>{
+    return ApiController.getDebtsController(request, response);
 });
 
 export default router;
